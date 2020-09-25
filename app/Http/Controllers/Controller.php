@@ -12,7 +12,8 @@ class Controller extends BaseController
             'token' => $token,
             'role' => $role,
             'token_type' => 'bearer',
-            'expires_in' => Auth::factory()->getTTL() * 60
+            'expires_in' => 1
+            // 'expires_in' => Auth::factory()->getTTL() * 60
         ], 200);
     }
 }

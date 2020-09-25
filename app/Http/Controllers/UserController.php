@@ -8,7 +8,7 @@ use  App\User;
 
 class UserController extends Controller
 {
-     /**
+    /**
      * Instantiate a new UserController instance.
      *
      * @return void
@@ -17,7 +17,6 @@ class UserController extends Controller
     {
         $this->middleware('auth');
     }
-
     /**
      * Get the authenticated User.
      *
@@ -27,7 +26,6 @@ class UserController extends Controller
     {
         return response()->json(['user' => Auth::user()], 200);
     }
-
     /**
      * Get all User.
      *
@@ -35,9 +33,8 @@ class UserController extends Controller
      */
     public function allUsers()
     {
-         return response()->json(['users' =>  User::all()], 200);
+        return response()->json(['users' =>  User::all()], 200);
     }
-
     /**
      * Get one user.
      *
@@ -56,7 +53,6 @@ class UserController extends Controller
         }
 
     }
-
     public function destroy($id){
         $user = User::whereId($id)->first();
             $user->delete();
@@ -68,7 +64,6 @@ class UserController extends Controller
             ], 200);
         }
     }
-
     public function update(Request $request)
     {
         $this->validate($request, [
@@ -77,7 +72,6 @@ class UserController extends Controller
             'role' => 'required',
             'username' => 'required'
         ]);
-
         try{
             $post = User::whereId($request->input('id'))->update([
                 'name'     => $request->input('name'),
@@ -85,7 +79,6 @@ class UserController extends Controller
                 'role'   => $request->input('role'),
                 'username'   => $request->input('username'),
             ]);
-
             if ($post) {
                 return response()->json([
                     'success' => true,
@@ -104,6 +97,5 @@ class UserController extends Controller
                 'data'   => $validator->errors()
             ],401);
         }
-
     }
 }
